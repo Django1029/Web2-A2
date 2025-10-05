@@ -16,33 +16,7 @@ The system allows users to:
 - Explore event categories and participating organisations.
 
 > ⚙️ The admin and registration features will be added in Assessment 3.
-charity-events-project/
-│
-├── backend/ # Node.js + Express.js (API Server)
-│ ├── app.js # Main server file
-│ ├── package.json # Dependencies & start script
-│ ├── config/
-│ │ └── event_db.js # MySQL connection setup
-│ ├── models/
-│ │ └── eventModel.js # Database query logic (MVC)
-│ └── routes/
-│ └── events.js # RESTful API routes
-│
-├── frontend/ # Client-side website
-│ ├── index.html # Homepage (shows all events)
-│ ├── search.html # Search/filter page
-│ ├── event-details.html # Event detail view
-│ ├── contact.html # Contact/info page
-│ ├── css/
-│ │ └── style.css # Global styles
-│ └── js/
-│ ├── main.js
-│ ├── home.js
-│ ├── search.js
-│ └── event-details.js
-│
-└── database/
-└── charityevents_db.sql # MySQL database schema and sample data
+
 ---
 🚀 Run the Application
 1️⃣ Install dependencies
