@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #2a7ae4;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #1d5bbf;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2a7ae4;
+    }
+    .info {
+      margin-bottom: 10px;
+    }
+    .register-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #2a7ae4;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .register-btn:hover {
+      background: #1d5bbf;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Event Details</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="search.html">Search Events</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container" id="eventDetails">
+    <p>Loading event details...</p>
+  </div>
+
+  <script>
+    // 从 URL 获取 event id
+    function getEventId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+    }
+
+    async function loadEvent() {
+      const id = getEventId();
+      if (!id) {
+        document.getElementById("eventDetails").innerHTML = "<p>❌ No event ID provided.</p>";
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:3000/api/events/${id}`);
+        const event = await res.json();
+
+        if (!event) {
+          document.getElementById("eventDetails").innerHTML = "<p>❌ Event not found.</p>";
+          return;
+        }
+
+        document.getElementById("eventDetails").innerHTML = `
+          <h2>${event.name}</h2>
+          <p class="info"><strong>Date:</strong> ${event.event_date}</p>
+          <p class="info"><strong>Location:</strong> ${event.location}</p>
+          <p class="info"><strong>Category:</strong> ${event.category}</p>
+          <p class="info"><strong>Organisation:</strong> ${event.organisation}</p>
+          <p class="info"><strong>Description:</strong> ${event.description}</p>
+          <p class="info"><strong>Ticket Price:</strong> $${event.ticket_price}</p>
+          <p class="info"><strong>Goal:</strong> $${event.goal_amount}</p>
+          <p class="info"><strong>Raised:</strong> $${event.raised_amount}</p>
+          <button class="register-btn" onclick="registerEvent()">Register</button>
+        `;
+      } catch (err) {
+        console.error("Error loading event:", err);
+        document.getElementById("eventDetails").innerHTML = "<p>❌ Error loading event.</p>";
+      }
+    }
+
+    function registerEvent() {
+      alert("🛠️ This feature is currently under construction.");
+    }
+
+    loadEvent();
+  </script>
+</body>
+</html>

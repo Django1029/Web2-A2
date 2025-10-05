@@ -1,0 +1,16 @@
+{
+  "name": "charity-events-project",
+  "version": "1.0.0",
+  "description": "Charity Events Web 2 Assessment 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "root",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0"
+  }
+}
